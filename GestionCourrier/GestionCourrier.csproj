@@ -134,6 +134,7 @@
     <Compile Include="BusinessLayer\InterfaceEmpBOManager.cs" />
     <Compile Include="BusinessLayer\InterfaceRolesManager.cs" />
     <Compile Include="BusinessLayer\RolesManager.cs" />
+    < <Compile Include="Controllers\CourrierController.cs" />
     <Compile Include="Controllers\EmployeBureauOrdresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DataLayer\MasterDbContext.cs" />
@@ -142,9 +143,15 @@
     </Compile>
     <Compile Include="Models\AgentService.cs" />
     <Compile Include="Models\Compte.cs" />
+    <Compile Include="Models\Courrier.cs" />
+    <Compile Include="Models\Dossier.cs" />
+    <Compile Include="Models\Employe.cs" />
     <Compile Include="Models\EmployeBureauOrdre.cs" />
     <Compile Include="Models\MyRolesProvider.cs" />
+    <Compile Include="Models\Reaffectation.cs" />
+    <Compile Include="Models\Reponse.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Service.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +159,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\input.css" />
+    <Content Include="Content\slider.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -189,6 +198,7 @@
     <Content Include="Views\EmployeBureauOrdres\Edit.cshtml" />
     <Content Include="Views\EmployeBureauOrdres\Index.cshtml" />
     <Content Include="Views\EmployeBureauOrdres\Auth.cshtml" />
+    <Content Include="Views\Courrier\AjouterCourrier.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
