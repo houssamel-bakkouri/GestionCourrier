@@ -13,7 +13,7 @@ using GestionCourrier.Models;
 
 namespace GestionCourrier.Controllers
 {
-    public class EmployeBureauOrdreController : Controller
+    public class EmployeBureauOrdresController : Controller
     {
         private MasterDbContext db = new MasterDbContext();
 
@@ -83,8 +83,7 @@ namespace GestionCourrier.Controllers
         {
             try
             {
-                //employeBureauOrdre.Compte.Role = rolesManager.GetRoles().FirstOrDefault(item => item.Id == employeBureauOrdre.Compte.Role.Id);
-                // add roles later
+                employeBureauOrdre.Compte.Role = rolesManager.GetRoles().FirstOrDefault(item => item.Id == employeBureauOrdre.Compte.Role.Id);
                 EmpBOManager.AddEmployeBO(employeBureauOrdre);
                 return RedirectToAction("Auth");
             }

@@ -134,7 +134,7 @@
     <Compile Include="BusinessLayer\InterfaceEmpBOManager.cs" />
     <Compile Include="BusinessLayer\InterfaceRolesManager.cs" />
     <Compile Include="BusinessLayer\RolesManager.cs" />
-    <Compile Include="Controllers\EmployeBureauOrdreController.cs" />
+    <Compile Include="Controllers\EmployeBureauOrdresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DataLayer\MasterDbContext.cs" />
     <Compile Include="Global.asax.cs">
