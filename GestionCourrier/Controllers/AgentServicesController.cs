@@ -6,20 +6,20 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
-using GestionCourrier.BusinessLayer;
 using GestionCourrier.DataLayer;
 using GestionCourrier.Models;
+using GestionCourrier.BusinessLayer;
+using System.Web.Security;
 
 namespace GestionCourrier.Controllers
 {
-    public class EmployeBureauOrdresController : Controller
+    public class AgentServicesController : Controller
     {
         private MasterDbContext db = new MasterDbContext();
 
-        //private RolesManager rolesManager = new RolesManager();
-        private EmpBOManager EmpBOManager = new EmpBOManager();
-        //private CompteManager CompteManager = new CompteManager();
+        private RolesManager rolesManager = new RolesManager();
+        private AgentServiceManager AgentServiceManager = new AgentServiceManager();
+        private CompteManager CompteManager = new CompteManager();
 
         [AllowAnonymous]
         public ActionResult Logout()
@@ -27,6 +27,7 @@ namespace GestionCourrier.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Auth");
         }
+
         [AllowAnonymous]
         public ActionResult Auth()
         {
@@ -41,7 +42,7 @@ namespace GestionCourrier.Controllers
             {
                 // TODO: Add insert logic here
 
-                if (EmpBOManager.Authenticate(model))
+                if (AgentServiceManager.Authenticate(model))
                 {
                     FormsAuthentication.SetAuthCookie(model.Login, false);
                     return RedirectToAction("Index");
@@ -54,110 +55,110 @@ namespace GestionCourrier.Controllers
                 return View();
             }
         }
-        // GET: EmployeBureauOrdres
-        [Authorize(Roles = "userBureauOrdre,adminBureauOrdre")]
+
+        // GET: AgentServices
+        [Authorize(Roles = "userService,adminService")]
         public ActionResult Index()
         {
-            return View(EmpBOManager.GetEmployes());
+            return View(AgentServiceManager.GetAgentServices());
         }
 
-        [Authorize(Roles = "adminBureauOrdre")]
-        // GET: EmployeBureauOrdres/Details/5
+        // GET: AgentServices/Details/5
+        [Authorize(Roles = "adminService")]
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //EmployeBureauOrdre employeBureauOrdre = db.EmployeBureaus.Find(id);
-            EmployeBureauOrdre employeBureauOrdre = EmpBOManager.SearchEmploye((int)id);
-            if (employeBureauOrdre == null)
+            AgentService agentService = AgentServiceManager.SearchAgent((int)id);
+            if (agentService == null)
             {
                 return HttpNotFound();
             }
-            return View(employeBureauOrdre);
+            return View(agentService);
         }
 
-        // GET: EmployeBureauOrdres/Create
         [AllowAnonymous]
+        // GET: AgentServices/Create
         public ActionResult Create()
         {
-            ViewBag.roles = new SelectList(EmpBOManager.GetRoles(), "Id", "Name");
+            ViewBag.roles = new SelectList(AgentServiceManager.GetRoles(), "Id", "Name");
             return View();
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Create(FormCollection collection, EmployeBureauOrdre employeBureauOrdre)
+        public ActionResult Create(FormCollection collection, AgentService agentService)
         {
             try
             {
-                employeBureauOrdre.Compte.Role = EmpBOManager.GetRoles().FirstOrDefault(item => item.Id == employeBureauOrdre.Compte.Role.Id);
-                EmpBOManager.AddEmployeBO(employeBureauOrdre);
+                agentService.Compte.Role = AgentServiceManager.GetRoles().FirstOrDefault(item => item.Id == agentService.Compte.Role.Id);
+                AgentServiceManager.AddAgentService(agentService);
                 return RedirectToAction("Auth");
             }
-            catch 
+            catch
             {
                 return View();
             }
         }
 
-        [Authorize(Roles = "adminBureauOrdre")]
-        // GET: EmployeBureauOrdres/Edit/5
+        [Authorize(Roles = "adminService")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EmployeBureauOrdre employeBureauOrdre = db.EmployeBureaus.Find(id);
-            if (employeBureauOrdre == null)
+            AgentService agentService = db.AgentServices.Find(id);
+            if (agentService == null)
             {
                 return HttpNotFound();
             }
-            return View(employeBureauOrdre);
+            return View(agentService);
         }
 
-        [Authorize(Roles = "adminBureauOrdre")]
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nom,Prenom")] EmployeBureauOrdre employeBureauOrdre)
+        [Authorize(Roles = "adminService")]
+        public ActionResult Edit([Bind(Include = "Id,Nom,Prenom,Service")] AgentService agentService)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employeBureauOrdre).State = EntityState.Modified;
+                db.Entry(agentService).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(employeBureauOrdre);
+            return View(agentService);
         }
 
-        // GET: EmployeBureauOrdres/Delete/5
-        [Authorize(Roles = "adminBureauOrdre")]
+        // GET: AgentServices/Delete/5
+        [Authorize(Roles = "adminService")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EmployeBureauOrdre employeBureauOrdre = EmpBOManager.SearchEmploye((int)id);
-            if (employeBureauOrdre == null)
+            AgentService agentService = AgentServiceManager.SearchAgent((int)id);
+            if (agentService == null)
             {
                 return HttpNotFound();
             }
-            return View(employeBureauOrdre);
+            return View(agentService);
         }
 
-        // POST: EmployeBureauOrdres/Delete/5
-        [Authorize(Roles = "adminBureauOrdre")]
+        // POST: AgentServices/Delete/5
+        [Authorize(Roles = "adminService")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            /*EmployeBureauOrdre employeBureauOrdre = db.EmployeBureaus.Find(id);
-            db.EmployeBureaus.Remove(employeBureauOrdre);
+            /*AgentService agentService = db.AgentServices.Find(id);
+            db.AgentServices.Remove(agentService);
             db.SaveChanges();*/
-            EmpBOManager.DeleteEmploye(id);
+            AgentServiceManager.DeleteAgentService(id);
             return RedirectToAction("Index");
         }
 

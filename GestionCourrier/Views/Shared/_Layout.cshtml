@@ -25,6 +25,13 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
             </div>
+            <div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("Logout", "Logout", "EmployeBureauOrdres", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.Label(User.Identity.Name, new { @class = "navbar-brand" })
+                }
+            </div>
         </div>
     </div>
     <div class="container body-content">

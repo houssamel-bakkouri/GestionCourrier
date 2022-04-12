@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GestionCourrier.Models.EmployeBureauOrdre>
+﻿@model IEnumerable<GestionCourrier.Models.AgentService>
 
 @{
     ViewBag.Title = "Index";
@@ -18,6 +18,9 @@
             @Html.DisplayNameFor(model => model.Prenom)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Service)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Compte.Role)
         </th>
         <th></th>
@@ -30,6 +33,9 @@
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Prenom)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Service)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Compte.Role.Name)
