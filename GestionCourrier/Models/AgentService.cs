@@ -13,7 +13,7 @@ namespace GestionCourrier.Models
         Compte compte;
         string nom;
         string prenom;
-        string service;
+        Service service;
 
         public Compte Compte { get => compte; set => compte = value; }
         [Required]
@@ -24,19 +24,10 @@ namespace GestionCourrier.Models
         public string Prenom { get => prenom; set => prenom = value; }
         [Required]
         [DataType(DataType.Text)]
-        public string Service { get => service; set => service = value; }
+        public Service Service { get => service; set => service = value; }
 
         public AgentService()
         {
         }
-
-        public AgentService(Compte compte, string nom, string prenom, string service)
-        {
-            this.compte = compte;
-            this.nom = nom;
-            this.prenom = prenom;
-            this.service = service;
-        }
-
     }
 }

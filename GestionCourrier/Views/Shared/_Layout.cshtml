@@ -18,13 +18,50 @@
                 </button>
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>
+            @*<div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            </ul>
+        </div>*@
+            @if (User.IsInRole("AdminBO"))
+            {
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Courriers", "Index", "Courriers")</li>
+                        <li>@Html.ActionLink("EmployeBureauOrdres", "Index", "EmployeBureauOrdres")</li>
+                    </ul>
+                </div>
+            }
+            @if (User.IsInRole("EmployeBO"))
+            {
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Courriers", "Index", "Courriers")</li>
+                    </ul>
+                </div>
+            }
+            @if (User.IsInRole("AdminService"))
+            {
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Courriers a traiter", "ListTraiter", "Courriers")</li>
+                        <li>@Html.ActionLink("Mes courrier", "ListMessageAgent", "Courriers")</li>
+                        <li>@Html.ActionLink("AgentServices", "Index", "AgentServices")</li>
+                    </ul>
+                </div>
+            }
+            @if (User.IsInRole("EmployeService"))
+            {
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Courriers a traiter", "ListTraiter", "Courriers")</li>
+                        <li>@Html.ActionLink("Mes courrier", "ListMessageAgent", "Courriers")</li>
+                        <li>@Html.ActionLink("AgentServices", "Index", "AgentServices")</li>
+                    </ul>
+                </div>
+            }
             <div>
                 @if (User.Identity.IsAuthenticated)
                 {

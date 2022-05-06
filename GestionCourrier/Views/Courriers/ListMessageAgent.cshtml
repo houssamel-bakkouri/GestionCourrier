@@ -1,0 +1,80 @@
+﻿@model IEnumerable<GestionCourrier.Models.Courrier>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mes messages</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CoordoneeExpediteur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nature)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCourrier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateArrive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Demande)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Objet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoordoneeExpediteur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nature)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCourrier)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateArrive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Demande)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Objet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Commentaire)
+            </td>
+            @*<td>
+                @Html.ActionLink("Repondre", "Repondre", new { id = item.Id }) |
+            </td>*@
+        </tr>
+    }
+
+</table>

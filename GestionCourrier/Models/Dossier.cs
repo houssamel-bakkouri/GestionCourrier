@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace exempleWeb2A.myModels
+namespace GestionCourrier.Models
 {
     public class Dossier
     {
-        private int id;
-        private string dossiername;
-        private string dossierObjet;
-        private Service dossierService;
-        public Employe dossierEmploye;
+        public int Id { get; set; }
+        public string dossiername { get; set; }
+        public string dossierObjet { get; set; }
+        public AgentService agentService { get; set; }
+        public EmployeBureauOrdre employeBureau { get; set; }
     }
 }

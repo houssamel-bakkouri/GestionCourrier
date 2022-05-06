@@ -20,7 +20,12 @@ namespace GestionCourrier.BusinessLayer
 
         public bool Authenticate(Compte c)
         {
-            throw new NotImplementedException();
+            foreach (var item in context.Comptes)
+            {
+                if (item.Login == c.Login && item.Password == c.Password)
+                    return true;
+            }
+            return false;
         }
 
         public void DeleteAgentService(int id)

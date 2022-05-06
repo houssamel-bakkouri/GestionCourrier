@@ -17,5 +17,8 @@ namespace GestionCourrier.DataLayer
         public DbSet<Role> Roles { get; set; } 
         public DbSet<AgentService> AgentServices { get; set; }
         public DbSet<EmployeBureauOrdre> EmployeBureaus { get; set; }
+        public DbSet<Courrier> Courriers { get; set; }
+        public DbSet<Reaffectation> Reaffectations { get; set; }
+        public DbSet<Service> Services { get; set; }
     }
 }

@@ -1,0 +1,90 @@
+﻿@model GestionCourrier.Models.Courrier
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Courrier</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CoordoneeExpediteur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CoordoneeExpediteur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nature)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nature)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCourrier)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCourrier)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateArrive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateArrive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Demande)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Demande)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Objet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Objet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commentaire)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

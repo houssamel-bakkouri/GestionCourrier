@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace exempleWeb2A.myModels
+namespace GestionCourrier.Models
 {
     public class Reponse
     {
-        private int id;
-        private Courrier courrier;
-        private string libelle;
-        private Employe employe;
-
+        public int Id { get; set; }
+        public string Libelle { get; set; }
+        public AgentService Suivi { get; set; }
     }
 }

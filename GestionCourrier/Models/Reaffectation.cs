@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace exempleWeb2A.myModels
+namespace GestionCourrier.Models
 {
     public class Reaffectation
     {
-        private int id;
-        private Service service;
-        private DateTime dateReaff;
-        private string motif;
-        private Employe agent;
-        private Employe personneService;
+        public int Id { get; set; }
+        public Service Service { get; set; }
+        public DateTime Date { get; set; }
+        public string Motif { get; set; }
+        public EmployeBureauOrdre Employe { get; set; }
+        public AgentService AgentService { get; set; }
     }
 }

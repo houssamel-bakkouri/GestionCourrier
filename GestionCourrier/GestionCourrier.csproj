@@ -135,7 +135,7 @@
     <Compile Include="BusinessLayer\InterfaceRolesManager.cs" />
     <Compile Include="BusinessLayer\RolesManager.cs" />
     <Compile Include="Controllers\AgentServicesController.cs" />
-    <Compile Include="Controllers\CourrierController.cs" />
+    <Compile Include="Controllers\CourriersController.cs" />
     <Compile Include="Controllers\EmployeBureauOrdresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DataLayer\MasterDbContext.cs" />
@@ -199,13 +199,20 @@
     <Content Include="Views\EmployeBureauOrdres\Edit.cshtml" />
     <Content Include="Views\EmployeBureauOrdres\Index.cshtml" />
     <Content Include="Views\EmployeBureauOrdres\Auth.cshtml" />
-    <Content Include="Views\Courrier\AjouterCourrier.cshtml" />
     <Content Include="Views\AgentServices\Create.cshtml" />
     <Content Include="Views\AgentServices\Delete.cshtml" />
     <Content Include="Views\AgentServices\Details.cshtml" />
     <Content Include="Views\AgentServices\Edit.cshtml" />
     <Content Include="Views\AgentServices\Index.cshtml" />
     <Content Include="Views\AgentServices\Auth.cshtml" />
+    <Content Include="Views\Courriers\Create.cshtml" />
+    <Content Include="Views\Courriers\Delete.cshtml" />
+    <Content Include="Views\Courriers\Details.cshtml" />
+    <Content Include="Views\Courriers\Edit.cshtml" />
+    <Content Include="Views\Courriers\Index.cshtml" />
+    <Content Include="Views\Courriers\Reaffecter.cshtml" />
+    <Content Include="Views\Courriers\ListTraiter.cshtml" />
+    <Content Include="Views\Courriers\ListMessageAgent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

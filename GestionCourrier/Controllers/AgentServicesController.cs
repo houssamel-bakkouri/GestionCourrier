@@ -84,6 +84,7 @@ namespace GestionCourrier.Controllers
         public ActionResult Create()
         {
             ViewBag.roles = new SelectList(AgentServiceManager.GetRoles(), "Id", "Name");
+            ViewBag.Service = new SelectList(db.Services, "Id", "Name");
             return View();
         }
 
@@ -93,8 +94,11 @@ namespace GestionCourrier.Controllers
         {
             try
             {
-                agentService.Compte.Role = AgentServiceManager.GetRoles().FirstOrDefault(item => item.Id == agentService.Compte.Role.Id);
-                AgentServiceManager.AddAgentService(agentService);
+                agentService.Compte.Role = db.Roles.FirstOrDefault(item => item.Id == agentService.Compte.Role.Id);
+                agentService.Service = db.Services.FirstOrDefault(item => item.Id == agentService.Service.Id);
+                //AgentServiceManager.AddAgentService(agentService);
+                db.AgentServices.Add(agentService);
+                db.SaveChanges();
                 return RedirectToAction("Auth");
             }
             catch
