@@ -9,7 +9,7 @@ namespace GestionCourrier.DataLayer
 {
     public class MasterDbContext : DbContext
     {
-        public MasterDbContext() : base("Masterdb")
+        public MasterDbContext() : base("CourriersDB")
         {
         }
 
