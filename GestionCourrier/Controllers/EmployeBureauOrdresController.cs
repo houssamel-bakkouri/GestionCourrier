@@ -58,7 +58,7 @@ namespace GestionCourrier.Controllers
         //[Authorize(Roles = "userBureauOrdre,adminBureauOrdre")]
         public ActionResult Index()
         {
-            return View(EmpBOManager.GetEmployes());
+            return View(EmpBOManager.GetEmployes().Include("Compte.Role"));
         }
 
         [Authorize(Roles = "adminBureauOrdre")]
