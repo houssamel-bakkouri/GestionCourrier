@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -82,7 +83,7 @@ namespace GestionCourrier.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(FormCollection collection, Courrier courrier)
+        public ActionResult Create(FormCollection collection, Courrier courrier, HttpPostedFileBase file)
         {
             try
             {
@@ -90,6 +91,12 @@ namespace GestionCourrier.Controllers
                 courrier.Responsable = db.AgentServices.FirstOrDefault(item => item.Id == courrier.Responsable.Id);
                 courrier.UniteAdmin = db.Services.FirstOrDefault(item => item.Id == courrier.UniteAdmin.Id);
                 EmployeBureauOrdre employeBureau = db.EmployeBureaus.Include("Compte").FirstOrDefault(item => item.Compte.Login == User.Identity.Name);
+                if (file.ContentLength > 0)
+                {
+                    string _FileName = Path.GetFileName(file.FileName);
+                    string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _FileName);
+                    file.SaveAs(_path);
+                }
                 if (employeBureau != null)
                 {
                     courrier.AdminBO = employeBureau;

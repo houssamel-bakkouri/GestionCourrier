@@ -109,6 +109,16 @@
             @Html.ValidationMessageFor(model => model.UniteAdmin, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <h2>UploadFile</h2>
+    @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div>
+            @Html.TextBox("file", "", new { type = "file" }) <br />
+            @ViewBag.Message
+        </div>
+    }
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-default" />
