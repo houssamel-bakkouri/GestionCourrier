@@ -1,0 +1,34 @@
+App web sous tomcat:
+(localhost:8080)
+WEB-INF > web.xml (descripteur de deploiment)
+
+web.xml:
++ Décalaration des ressources
++ mapping => droit d'acces
++ controle d'acces (role)
+
+*Tomcat connecteurs:
+
+8080: con http, port tomcat
+
+server.xml:
+Engine>
+Realm: base de données utilisateur
+en reference les ressources qu'on veut utiliser
+
+Host>
+
+Jakarta EE:
+
+.jar: api, ejb
+.war: web, archive
+.ear: archive entreprise
+
+rmi, ejb, 
+serveur web != serveur d'application
+
+b.lebbar@esisa.ma
+
+
+Expression language:
+${}

@@ -8,7 +8,7 @@ namespace GestionCourrier.Models
     public class Courrier
     {
         public int Id { get; set; }
-        public Dossier Dossier { get; set; }
+        //public Dossier Dossier { get; set; }
         public string CoordoneeExpediteur { get; set; }
         public string Type { get; set; }
         public string Nature { get; set; }

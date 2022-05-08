@@ -8,9 +8,11 @@ namespace GestionCourrier.Models
     public class Dossier
     {
         public int Id { get; set; }
-        public string dossiername { get; set; }
-        public string dossierObjet { get; set; }
-        public AgentService agentService { get; set; }
-        public EmployeBureauOrdre employeBureau { get; set; }
+        public string Dossiername { get; set; }
+        public string DossierObjet { get; set; }
+        public Service Service { get; set; }
+        public AgentService Responsable { get; set; }
+        public ICollection<Courrier> Courriers { get; set; }
+        public bool Sent { get; set; } = false;
     }
 }

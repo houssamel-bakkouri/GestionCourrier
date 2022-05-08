@@ -20,5 +20,6 @@ namespace GestionCourrier.DataLayer
         public DbSet<Courrier> Courriers { get; set; }
         public DbSet<Reaffectation> Reaffectations { get; set; }
         public DbSet<Service> Services { get; set; }
+        public DbSet<Dossier> Dossiers { get; set; }
     }
 }
