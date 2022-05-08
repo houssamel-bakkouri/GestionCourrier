@@ -83,7 +83,7 @@ namespace GestionCourrier.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(FormCollection collection, Courrier courrier, HttpPostedFileBase file)
+        public ActionResult Create(FormCollection collection, Courrier courrier)
         {
             try
             {
@@ -91,19 +91,14 @@ namespace GestionCourrier.Controllers
                 courrier.Responsable = db.AgentServices.FirstOrDefault(item => item.Id == courrier.Responsable.Id);
                 courrier.UniteAdmin = db.Services.FirstOrDefault(item => item.Id == courrier.UniteAdmin.Id);
                 EmployeBureauOrdre employeBureau = db.EmployeBureaus.Include("Compte").FirstOrDefault(item => item.Compte.Login == User.Identity.Name);
-                if (file.ContentLength > 0)
-                {
-                    string _FileName = Path.GetFileName(file.FileName);
-                    string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _FileName);
-                    file.SaveAs(_path);
-                }
                 if (employeBureau != null)
                 {
                     courrier.AdminBO = employeBureau;
                 }
                 db.Courriers.Add(courrier);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                Session["AddedCourrierId"] = courrier.Id;
+                return RedirectToAction("UploadFile");
             }
       
              catch
@@ -111,6 +106,38 @@ namespace GestionCourrier.Controllers
                 return View();
             }
 
+        }
+
+        [HttpGet]
+        public ActionResult UploadFile()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UploadFile(HttpPostedFileBase file)
+        {
+            try
+            {
+                if (file.ContentLength > 0)
+                {
+                    string _FileName = Path.GetFileName(file.FileName);
+                    string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _FileName);
+                    file.SaveAs(_path);
+                    Courrier courrier = db.Courriers.Find((int)Session["AddedCourrierId"]);
+                    if(courrier != null)
+                    {
+                        courrier.FileSource = _path;
+                        db.SaveChanges();
+                    }
+                }
+                ViewBag.Message = "File Uploaded Successfully!!";
+                return View();
+            }
+            catch
+            {
+                ViewBag.Message = "File upload failed!!";
+                return View();
+            }
         }
 
         public ActionResult Reaffecter(int id)

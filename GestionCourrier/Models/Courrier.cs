@@ -24,5 +24,6 @@ namespace GestionCourrier.Models
         public Reaffectation Reaffectation { get; set; }
         public Service UniteAdmin { get; set; }
         public bool Traiter { get; set; } = false;
+        public string FileSource { get; set; }
     }
 }
