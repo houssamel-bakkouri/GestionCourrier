@@ -87,6 +87,8 @@ namespace GestionCourrier.Controllers
         {
             try
             {
+                
+                
                 courrier.Suivi = db.AgentServices.FirstOrDefault(item => item.Id == courrier.Suivi.Id);
                 courrier.Responsable = db.AgentServices.FirstOrDefault(item => item.Id == courrier.Responsable.Id);
                 courrier.UniteAdmin = db.Services.FirstOrDefault(item => item.Id == courrier.UniteAdmin.Id);
@@ -128,10 +130,18 @@ namespace GestionCourrier.Controllers
                     {
                         courrier.FileSource = _path;
                         db.SaveChanges();
+                        if (Session["DossierCourrier"] != null)
+                        {
+                            int id = (int)Session["DossierCourrier"];
+                            Dossier dossier = db.Dossiers.Include("Courriers").FirstOrDefault(item => item.Id == id);
+                            dossier.Courriers.Add(courrier);
+                            db.SaveChanges();
+                            return RedirectToAction("Index", "Dossiers");
+                        }
                     }
                 }
                 ViewBag.Message = "File Uploaded Successfully!!";
-                return View();
+                return RedirectToAction("Index");
             }
             catch
             {

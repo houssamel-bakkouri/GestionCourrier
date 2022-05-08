@@ -17,23 +17,47 @@
         <th>
             @Html.DisplayNameFor(model => model.DossierObjet)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Service)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Responsable)
+        </th>
+        <th>
+            Courriers
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dossiername)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DossierObjet)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Dossiername)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DossierObjet)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Service.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Responsable.Nom)
+    </td>
+    <td>
+        @item.Courriers.Count()
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })|
+        @if (!item.Sent)
+        {
+            @Html.ActionLink("Send", "Send", new { id = item.Id })
+        }
+        |
+        @Html.ActionLink("AddCourrier", "AddCourrier", new { id = item.Id })
+    </td>
+</tr>
 }
 
 </table>

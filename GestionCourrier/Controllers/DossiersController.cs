@@ -18,7 +18,19 @@ namespace GestionCourrier.Controllers
         // GET: Dossiers
         public ActionResult Index()
         {
-            return View(db.Dossiers.ToList());
+            return View(db.Dossiers.Include("Courriers").Include("Service").Include("Responsable").ToList());
+        }
+
+        public ActionResult AddCourrier(int id)
+        {
+            Session["DossierCourrier"] = id;
+            return RedirectToAction("Create", "Courriers");
+        }
+        public ActionResult Send(int id)
+        {
+            Dossier dossier = db.Dossiers.Find(id);
+            dossier.Sent = true;
+            return RedirectToAction("Index");
         }
 
         // GET: Dossiers/Details/5
@@ -39,6 +51,8 @@ namespace GestionCourrier.Controllers
         // GET: Dossiers/Create
         public ActionResult Create()
         {
+            ViewBag.Responsable = new SelectList(db.AgentServices, "Id", "Nom");
+            ViewBag.Service = new SelectList(db.Services, "Id", "Name");
             return View();
         }
 
@@ -47,16 +61,20 @@ namespace GestionCourrier.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,dossiername,dossierObjet")] Dossier dossier)
+        public ActionResult Create(FormCollection collection, Dossier dossier)
         {
-            if (ModelState.IsValid)
+            try
             {
+                dossier.Responsable = db.AgentServices.FirstOrDefault(item => item.Id == dossier.Responsable.Id);
+                dossier.Service = db.Services.FirstOrDefault(item => item.Id == dossier.Service.Id);
                 db.Dossiers.Add(dossier);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(dossier);
+            catch (Exception)
+            {
+                return View();
+            }
         }
 
         // GET: Dossiers/Edit/5
