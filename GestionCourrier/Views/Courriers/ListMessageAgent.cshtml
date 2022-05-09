@@ -43,38 +43,42 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CoordoneeExpediteur)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nature)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateCourrier)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateArrive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateCreation)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Demande)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Objet)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Commentaire)
-            </td>
-            @*<td>
-                @Html.ActionLink("Repondre", "Repondre", new { id = item.Id }) |
-            </td>*@
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.CoordoneeExpediteur)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Type)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nature)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateCourrier)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateArrive)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateCreation)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Demande)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Objet)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Commentaire)
+    </td>
+    @if (item.Reponse == null)
+    {
+        <td>
+            @Html.ActionLink("Repondre", "Repondre", new { id = item.Id }) |
+        </td>
+    }
+
+</tr>
     }
 
 </table>

@@ -45,7 +45,7 @@ namespace GestionCourrier.Controllers
             }
             AgentService agent = db.AgentServices.Include("Compte").Include("Service").FirstOrDefault(item => item.Compte.Login == User.Identity.Name);
 
-            List<Courrier> Courriers = db.Courriers.Include("Suivi").Where(item => item.Suivi.Nom == agent.Nom).ToList();
+            List<Courrier> Courriers = db.Courriers.Include("Suivi").Include("Reponse").Where(item => item.Suivi.Nom == agent.Nom).ToList();
             return View(Courriers);
         }
 
@@ -70,6 +70,34 @@ namespace GestionCourrier.Controllers
                 return HttpNotFound();
             }
             return View(courrier);
+        }
+
+        public ActionResult Repondre(int id)
+        {
+            Session["CourrierReponseId"] = id;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Repondre(FormCollection collection, Reponse reponse)
+        {
+            try
+            {
+                Courrier courrier = db.Courriers.Find((int)Session["CourrierReponseId"]);
+                Session["CourrierReponseId"] = null;
+                AgentService suivi = db.AgentServices.Include("Compte").FirstOrDefault(item => item.Compte.Login == User.Identity.Name);
+                reponse.Suivi = suivi;
+                courrier.Reponse = reponse;
+                db.SaveChanges();
+                Session["ReponseId"] = reponse.Id;
+                return RedirectToAction("Create");
+            }
+            catch
+            {
+                return View();
+            }
+
         }
 
         // GET: Courriers/Create
@@ -130,6 +158,16 @@ namespace GestionCourrier.Controllers
                     {
                         courrier.FileSource = _path;
                         db.SaveChanges();
+                        // If this courrier is a reponse to another courrier
+                        if (Session["Reponse"] == null)
+                        {
+                            Reponse reponse = db.Reponses.Include("").FirstOrDefault(item => item.Id == (int)Session["Reponse"]);
+                            reponse.courrier = courrier;
+                            db.SaveChanges();
+                            return RedirectToAction("ListMessageAgent");
+                        }
+
+                        // If this courrier is a part of a dossier
                         if (Session["DossierCourrier"] != null)
                         {
                             int id = (int)Session["DossierCourrier"];
