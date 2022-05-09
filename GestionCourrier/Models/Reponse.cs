@@ -9,6 +9,8 @@ namespace GestionCourrier.Models
     {
         public int Id { get; set; }
         public string Libelle { get; set; }
+        //Nom de la personne qui a effectuée l’opération de réponse
         public AgentService Suivi { get; set; }
+        public Courrier courrier { get; set; }
     }
 }

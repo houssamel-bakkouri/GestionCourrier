@@ -25,5 +25,6 @@ namespace GestionCourrier.Models
         public Service UniteAdmin { get; set; }
         public bool Traiter { get; set; } = false;
         public string FileSource { get; set; }
+        public Reponse Reponse { get; set; }
     }
 }
