@@ -159,7 +159,7 @@ namespace GestionCourrier.Controllers
                         courrier.FileSource = _path;
                         db.SaveChanges();
                         // If this courrier is a reponse to another courrier
-                        if (Session["Reponse"] == null)
+                        if (Session["ReponseId"] == null)
                         {
                             Reponse reponse = db.Reponses.Include("").FirstOrDefault(item => item.Id == (int)Session["Reponse"]);
                             reponse.courrier = courrier;
