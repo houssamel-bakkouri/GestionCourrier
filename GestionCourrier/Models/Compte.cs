@@ -26,6 +26,7 @@ namespace GestionCourrier.Models
         [DataType(DataType.Password)]
         public string Password { get => password; set => password = value; }
         public Role Role { get => role; set => role = value; }
+        public ICollection<Notification> Notifications { get; set; }
 
         public override string ToString()
         {

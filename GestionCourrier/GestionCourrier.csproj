@@ -140,6 +140,7 @@
     <Compile Include="Controllers\DossiersController.cs" />
     <Compile Include="Controllers\EmployeBureauOrdresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NotificationsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="DataLayer\MasterDbContext.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="Models\Employe.cs" />
     <Compile Include="Models\EmployeBureauOrdre.cs" />
     <Compile Include="Models\MyRolesProvider.cs" />
+    <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Reaffectation.cs" />
     <Compile Include="Models\Reponse.cs" />
     <Compile Include="Models\Role.cs" />
@@ -234,6 +236,11 @@
     <Content Include="Views\Dossiers\Edit.cshtml" />
     <Content Include="Views\Dossiers\Index.cshtml" />
     <Content Include="Views\Courriers\Repondre.cshtml" />
+    <Content Include="Views\Notifications\Create.cshtml" />
+    <Content Include="Views\Notifications\Delete.cshtml" />
+    <Content Include="Views\Notifications\Details.cshtml" />
+    <Content Include="Views\Notifications\Edit.cshtml" />
+    <Content Include="Views\Notifications\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
