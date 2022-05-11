@@ -236,10 +236,8 @@
     <Content Include="Views\Dossiers\Edit.cshtml" />
     <Content Include="Views\Dossiers\Index.cshtml" />
     <Content Include="Views\Courriers\Repondre.cshtml" />
-    <Content Include="Views\Notifications\Create.cshtml" />
     <Content Include="Views\Notifications\Delete.cshtml" />
     <Content Include="Views\Notifications\Details.cshtml" />
-    <Content Include="Views\Notifications\Edit.cshtml" />
     <Content Include="Views\Notifications\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
