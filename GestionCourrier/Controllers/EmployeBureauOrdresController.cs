@@ -118,7 +118,7 @@ namespace GestionCourrier.Controllers
             return View(employeBureauOrdre);
         }
 
-        [Authorize(Roles = "adminBureauOrdre")]
+     [Authorize(Roles = "adminBureauOrdre")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Nom,Prenom")] EmployeBureauOrdre employeBureauOrdre)
@@ -149,7 +149,7 @@ namespace GestionCourrier.Controllers
         }
 
         // POST: EmployeBureauOrdres/Delete/5
-        [Authorize(Roles = "adminBureauOrdre")]
+       [Authorize(Roles = "adminBureauOrdre")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

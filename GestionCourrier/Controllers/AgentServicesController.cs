@@ -57,14 +57,14 @@ namespace GestionCourrier.Controllers
         }
 
         // GET: AgentServices
-        [Authorize(Roles = "userService,adminService")]
+      [Authorize(Roles = "userService,adminService")]
         public ActionResult Index()
         {
             return View(AgentServiceManager.GetAgentServices());
         }
 
         // GET: AgentServices/Details/5
-        [Authorize(Roles = "adminService")]
+[Authorize(Roles = "adminService")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -107,7 +107,7 @@ namespace GestionCourrier.Controllers
             }
         }
 
-        [Authorize(Roles = "adminService")]
+       [Authorize(Roles = "adminService")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
