@@ -12,7 +12,5 @@ namespace GestionCourrier.Models
         public string Libelle { get; set; }
         //Nom de la personne qui a effectuée l’opération de réponse
         public AgentService Suivi { get; set; }
-        /*[Required]
-        public Courrier courrier { get; set; }*/
     }
 }
