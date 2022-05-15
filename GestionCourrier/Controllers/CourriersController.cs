@@ -31,8 +31,24 @@ namespace GestionCourrier.Controllers
 
         public ActionResult Traiter(int id)
         {
-            Courrier courrier = db.Courriers.Find(id);
+            Courrier courrier = db.Courriers.Include("Suivi.Compte.Notifications").Include("AdminBO.Compte.Notifications").FirstOrDefault(item => item.Id == id);
             courrier.Traiter = true;
+
+            Notification notificationAdminBo = new Notification
+            {
+                Title = "Une Courrier a été bien traiter",
+                Message = $"La courrier avec le réference {courrier.Id} " +
+                $"a été bien traiter par {courrier.Responsable.Nom} {courrier.Responsable.Prenom}"
+            };
+            courrier.AdminBO.Compte.Notifications.Add(notificationAdminBo);
+
+            Notification notificationSuivi = new Notification
+            {
+                Title = "Votre courrier a été bien taiter",
+                Message = "La courrier que vous avez recu a été bien traiter"
+            };
+            courrier.Suivi.Compte.Notifications.Add(notificationSuivi);
+
             db.SaveChanges();
             return RedirectToAction("ListTraiter");
         }
