@@ -8,7 +8,7 @@ namespace GestionCourrier.Models
     public class Notification
     {
         public int Id { get; set; }
-        public int Title { get; set; }
+        public string Title { get; set; }
         public string Message { get; set; }
     }
 }

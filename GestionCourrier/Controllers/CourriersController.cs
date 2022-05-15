@@ -45,7 +45,7 @@ namespace GestionCourrier.Controllers
             }
             AgentService agent = db.AgentServices.Include("Compte").Include("Service").FirstOrDefault(item => item.Compte.Login == User.Identity.Name);
 
-            List<Courrier> Courriers = db.Courriers.Include("Suivi").Include("Reponse").Where(item => item.Suivi.Nom == agent.Nom).ToList();
+            List<Courrier> Courriers = db.Courriers.Include("Suivi").Include("Reponse").Where(item => item.Suivi.Nom == agent.Nom && item.Traiter).ToList();
             return View(Courriers);
         }
 
@@ -103,9 +103,9 @@ namespace GestionCourrier.Controllers
         // GET: Courriers/Create
         public ActionResult Create()
         {
-            ViewBag.Suivi = new SelectList(db.AgentServices, "Id", "Nom");
+            ViewBag.Suivi = new SelectList(db.AgentServices.Include("Compte"), "Id", "Nom");
             ViewBag.UniteAdmin = new SelectList(db.Services, "Id", "Name");
-            ViewBag.Responsable = new SelectList(db.AgentServices, "Id", "Nom");
+            ViewBag.Responsable = new SelectList(db.AgentServices.Include("Compte"), "Id", "Nom");
             return View();
         }
 
@@ -115,15 +115,22 @@ namespace GestionCourrier.Controllers
         {
             try
             {
-                
-                
+                courrier.DateCreation = DateTime.Now;
                 courrier.Suivi = db.AgentServices.FirstOrDefault(item => item.Id == courrier.Suivi.Id);
                 courrier.Responsable = db.AgentServices.FirstOrDefault(item => item.Id == courrier.Responsable.Id);
                 courrier.UniteAdmin = db.Services.FirstOrDefault(item => item.Id == courrier.UniteAdmin.Id);
                 EmployeBureauOrdre employeBureau = db.EmployeBureaus.Include("Compte").FirstOrDefault(item => item.Compte.Login == User.Identity.Name);
+               
                 if (employeBureau != null)
                 {
                     courrier.AdminBO = employeBureau;
+                    Notification notificationAdminService = new Notification { Title = "Nouvelle courrier a traiter", Message = $"L'employe {courrier.Suivi.Nom} {courrier.Suivi.Prenom} a recu une courrier ", };
+                    AgentService responsable = db.AgentServices.Include("Compte").Include("Compte.Notifications").First(item => item.Id == courrier.Responsable.Id);
+                    responsable.Compte.Notifications.Add(notificationAdminService);
+
+                    Notification notificationAgent = new Notification { Title = "Vous avez recu une nouvelle courrier", Message = $"Vous avez recu une nouvelle courrier de type : {courrier.Type} entrein de traitement par votre admin de service" };
+                    AgentService suivi = db.AgentServices.Include("Compte").Include("Compte").Include("Compte.Notifications").First(item => item.Id == courrier.Suivi.Id);
+                    suivi.Compte.Notifications.Add(notificationAdminService);
                 }
                 db.Courriers.Add(courrier);
                 db.SaveChanges();
@@ -159,9 +166,9 @@ namespace GestionCourrier.Controllers
                         courrier.FileSource = _path;
                         db.SaveChanges();
                         // If this courrier is a reponse to another courrier
-                        if (Session["ReponseId"] == null)
+                        if (Session["ReponseId"] != null)
                         {
-                            Reponse reponse = db.Reponses.Include("").FirstOrDefault(item => item.Id == (int)Session["Reponse"]);
+                            Reponse reponse = db.Reponses.Include("courrier").FirstOrDefault(item => item.Id == (int)Session["Reponse"]);
                             reponse.courrier = courrier;
                             db.SaveChanges();
                             return RedirectToAction("ListMessageAgent");

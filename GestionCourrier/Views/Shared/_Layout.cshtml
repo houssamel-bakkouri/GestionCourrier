@@ -66,13 +66,18 @@
                     </ul>
                 </div>
             }
-            <div>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    @Html.ActionLink("Logout", "Logout", "EmployeBureauOrdres", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.Label(User.Identity.Name, new { @class = "navbar-brand" })
-                }
-            </div>
+        <div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Notifications", "Index", "Notifications")</li>
+                    </ul>
+                </div>
+                @Html.ActionLink("Logout", "Logout", "EmployeBureauOrdres", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.Label(User.Identity.Name, new { @class = "navbar-brand" })
+            }
+        </div>
         </div>
     </div>
     <div class="container body-content">

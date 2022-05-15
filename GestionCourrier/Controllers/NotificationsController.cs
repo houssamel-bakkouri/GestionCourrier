@@ -18,7 +18,7 @@ namespace GestionCourrier.Controllers
         // GET: Notifications
         public ActionResult Index()
         {
-            Compte compte = db.Comptes.FirstOrDefault(item => item.Login == User.Identity.Name);
+            Compte compte = db.Comptes.Include("Notifications").FirstOrDefault(item => item.Login == User.Identity.Name);
             return View(compte.Notifications);
         }
 
@@ -44,6 +44,31 @@ namespace GestionCourrier.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Notification notification = db.Notifications.Find(id);
+            if (notification == null)
+            {
+                return HttpNotFound();
+            }
+            return View(notification);
+        }
+
+        // POST: Dossiers/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Notification notification = db.Notifications.Find(id);
+            db.Notifications.Remove(notification);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
