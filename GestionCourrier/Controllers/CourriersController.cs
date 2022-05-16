@@ -188,7 +188,8 @@ namespace GestionCourrier.Controllers
                     Courrier courrier = db.Courriers.Find((int)Session["AddedCourrierId"]);
                     if(courrier != null)
                     {
-                        courrier.FileSource = _path;
+                        //courrier.FileSource = _path;
+                        courrier.FileSource = _FileName;
                         db.SaveChanges();
                         // If this courrier is a reponse to another courrier
                         // Feature removed
@@ -317,6 +318,17 @@ namespace GestionCourrier.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public FileResult DownloadFile(int id)
+        {
+            string name = db.Courriers.Find(id).FileSource;
+            string path = Server.MapPath("~/UploadedFiles/") + name;
+
+            byte[] bytes = System.IO.File.ReadAllBytes(path);
+
+            return File(bytes, "application/octet-stream", name);
+
         }
     }
 }
