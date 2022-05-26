@@ -1851,6 +1851,11 @@
     <Content Include="assets\dropdown\css\style.css" />
     <Content Include="assets\dropdown\js\navbar-dropdown.js" />
     <Content Include="assets\formoid\formoid.min.js" />
+    <Content Include="assets\icons\add.png" />
+    <Content Include="assets\icons\email.png" />
+    <Content Include="assets\icons\folder.png" />
+    <Content Include="assets\icons\human.png" />
+    <Content Include="assets\icons\settings.png" />
     <Content Include="assets\images\6461.jpg" />
     <Content Include="assets\images\990951241-464x400.jpg" />
     <Content Include="assets\images\logo-fm-500x70.png" />

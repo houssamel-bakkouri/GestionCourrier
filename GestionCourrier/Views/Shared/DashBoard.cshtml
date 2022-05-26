@@ -53,27 +53,40 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                *************
-            </div>
-
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
 
 
 
                 @if (User.IsInRole("AdminBO"))
-                {
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-fw fa-wrench"></i>@Html.ActionLink("Courriers", "Index", "Courriers", null, new { @class = "collapse-item", @style = "color:white" })</li>
+                {<div class="sidebar-heading">
+                        GESTION COURRIER
+                    </div>
+                <li>
+                    <i class="fas fa-fw "></i> <img src="~/assets/icons/email.png" width="15px" height="15px" />@Html.ActionLink("Courriers", "Index", "Courriers", null, new { @class = "collapse-item", @style = "color:white" })
+                    <br />     <i class="fas fa-fw "></i> <img src="~/assets/icons/add.png" width="15px" height="15px" />@Html.ActionLink("Crée un Courrier", "Create", "Courriers", null, new { @class = "collapse-item", @style = "color:white" })
+                </li>
                 <!-- Divider -->
+                <div class="sidebar-heading ">
+                    GESTION Dossier
+                </div>
                 <hr class="sidebar-divider">
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;   <i class="fas fa-fw fa-folder"></i>@Html.ActionLink("Dossiers", "Index", "Dossiers", null, new { @class = "collapse-item", @style = "color:white" })</li>
+
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;   <i class="fas fa-fw "> <img src="~/assets/icons/folder.png" width="15px" height="15px" /></i>@Html.ActionLink("Dossiers", "Index", "Dossiers", null, new { @class = "collapse-item", @style = "color:white" })</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;   <i class="fas fa-fw "> <img src="~/assets/icons/add.png" width="15px" height="15px" /></i>@Html.ActionLink("Crées un Dossier", "Create", "Dossiers", null, new { @class = "collapse-item", @style = "color:white" })</li>
                 <!-- Divider -->
+                <div class="sidebar-heading">
+                    GESTION des Employe
+                </div>
                 <hr class="sidebar-divider">
-                <li>&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-table"></i>@Html.ActionLink("EmployeBureauOrdres", "Index", "EmployeBureauOrdres", null, new { @class = "collapse-item", @style = "color:white" })</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw @*fa-table*@"><img src="~/assets/icons/human.png" width="20px" height="20px" /></i>@Html.ActionLink("EmployeBureauOrdres", "Index", "EmployeBureauOrdres", null, new { @class = "collapse-item", @style = "color:white" })</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw @*fa-table*@"><img src="~/assets/icons/add.png" width="15px" height="15px" /></i>@Html.ActionLink("Crée un Employé", "Create", "EmployeBureauOrdres", null, new { @class = "collapse-item", @style = "color:white" })</li>
                 <!-- Divider -->
+                <div class="sidebar-heading">
+                    GESTION Des Role
+                </div>
                 <hr class="sidebar-divider">
-                <li>&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-table"></i>@Html.ActionLink("Roles", "Index", "Roles", null, new { @class = "collapse-item", @style = "color:white" })</li>
+                <li>&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw @*fa-table*@"><img src="~/assets/icons/settings.png" width="20px" height="20px" /></i>@Html.ActionLink("Roles", "Index", "Roles", null, new { @class = "collapse-item", @style = "color:white" })</li>
                 <!-- Divider -->
                 <hr class="sidebar-divider">
 
@@ -82,28 +95,44 @@
 
                 @if (User.IsInRole("EmployeBO"))
                 {
-                    <!-- Divider -->
+                    <div class="sidebar-heading ">
+                        GESTION Dossier
+                    </div>
                     <hr class="sidebar-divider">
-                    <li>&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-table"></i>@Html.ActionLink("Courriers", "Index", "Courriers", null, new { @class = "collapse-item", @style = "color:white" })</li>
+                    <li>
+                        <i class="fas fa-fw "></i> <img src="~/assets/icons/email.png" width="15px" height="15px" />@Html.ActionLink("Courriers", "Index", "Courriers", null, new { @class = "collapse-item", @style = "color:white" })
+                        <br />     <i class="fas fa-fw "></i> <img src="~/assets/icons/add.png" width="15px" height="15px" />@Html.ActionLink("Crée un Courrier", "Create", "Courriers", null, new { @class = "collapse-item", @style = "color:white" })
+                    </li>
                     <!-- Divider -->
+                    <div class="sidebar-heading ">
+                        GESTION Dossier
+                    </div>
                     <hr class="sidebar-divider">
-                    <li>&nbsp;&nbsp;&nbsp;&nbsp;   <i class="fas fa-fw fa-folder"></i>@Html.ActionLink("Dossiers", "Index", "Dossiers", null, new { @class = "collapse-item", @style = "color:white" })</li>
-                    <!-- Divider -->
-                    <hr class="sidebar-divider">
+
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;   <i class="fas fa-fw "> <img src="~/assets/icons/folder.png" width="15px" height="15px" /></i>@Html.ActionLink("Dossiers", "Index", "Dossiers", null, new { @class = "collapse-item", @style = "color:white" })</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;   <i class="fas fa-fw "> <img src="~/assets/icons/add.png" width="15px" height="15px" /></i>@Html.ActionLink("Crées un Dossier", "Create", "Dossiers", null, new { @class = "collapse-item", @style = "color:white" })</li>
+
                 }
                 @if (User.IsInRole("AdminService"))
                 {
-
-                    <li>&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-table"></i>@Html.ActionLink("Courriers a traiter", "ListTraiter", "Courriers", null, new { @class = "collapse-item", @style = "color:white" })</li>
+                    <div class="sidebar-heading ">
+                        GESTION Dossier
+                    </div>
+                    <hr class="sidebar-divider">
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw"><img src="~/assets/icons/email.png" width="15px" height="15px" /></i>@Html.ActionLink("Courriers a traiter", "ListTraiter", "Courriers", null, new { @class = "collapse-item", @style = "color:white" })</li>
                     <!-- Divider -->
                     <hr class="sidebar-divider">
-                    <li>&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-table"></i>@Html.ActionLink("Mes courrier", "ListMessageAgent", "Courriers", null, new { @class = "collapse-item", @style = "color:white" })</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw "><img src="~/assets/icons/email.png" width="15px" height="15px" /></i>@Html.ActionLink("Mes courrier", "ListMessageAgent", "Courriers", null, new { @class = "collapse-item", @style = "color:white" })</li>
+                    <!-- Divider -->
+                    <div class="sidebar-heading ">
+                        GESTION Service
+                    </div>
+                    <hr class="sidebar-divider">
+                    <hr class="sidebar-divider">
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw "><img src="~/assets/icons/human.png" width="15px" height="15px" /></i>@Html.ActionLink("AgentServices", "Index", "AgentServices", null, new { @class = "collapse-item", @style = "color:white" })</li>
                     <!-- Divider -->
                     <hr class="sidebar-divider">
-                    <li>&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-table"></i>@Html.ActionLink("AgentServices", "Index", "AgentServices", null, new { @class = "collapse-item", @style = "color:white" })</li>
-                    <!-- Divider -->
-                    <hr class="sidebar-divider">
-                    <li>&nbsp;&nbsp;&nbsp;&nbsp;   <i class="fas fa-fw fa-folder"></i>@Html.ActionLink("Services", "Index", "Services", null, new { @class = "collapse-item", @style = "color:white" })</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;   <i class="fas fa-fw"><img src="~/assets/icons/settings.png" width="15px" height="15px" /></i>@Html.ActionLink("Services", "Index", "Services", null, new { @class = "collapse-item", @style = "color:white" })</li>
                     <!-- Divider -->
                     <hr class="sidebar-divider">
                 }
@@ -111,10 +140,10 @@
                 {
                     <!-- Divider -->
                     <hr class="sidebar-divider">
-                    <li>&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-table">@Html.ActionLink("Courriers a traiter", "ListTraiter", "Courriers", null, new { @class = "collapse-item", @style = "color:white" })</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw"><img src="~/assets/icons/email.png" width="15px" height="15px" />@Html.ActionLink("Courriers a traiter", "ListTraiter", "Courriers", null, new { @class = "collapse-item", @style = "color:white" })</li>
                     <!-- Divider -->
                     <hr class="sidebar-divider">
-                    <li>&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw fa-table">@Html.ActionLink("Mes courrier", "ListMessageAgent", "Courriers", null, new { @class = "collapse-item", @style = "color:white" })</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-fw"><img src="~/assets/icons/add.png" width="15px" height="15px" />@Html.ActionLink("Mes courrier", "ListMessageAgent", "Courriers", null, new { @class = "collapse-item", @style = "color:white" })</li>
                     <!-- Divider -->
                     <hr class="sidebar-divider">
                 }
@@ -185,17 +214,17 @@
                         </a>
                     </li>
                 }
-                    <!-- Divider -->
-                    <hr class="sidebar-divider d-none d-md-block">
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
 
-                    <!-- Sidebar Toggler (Sidebar) -->
-                    <div class="text-center d-none d-md-inline">
-                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                    </div>
+                <!-- Sidebar Toggler (Sidebar) -->
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
 
 
 
-                </ul>
+            </ul>
                 <!-- End of Sidebar -->
                 <!-- Content Wrapper -->
                 <div id="content-wrapper" class="d-flex flex-column">
