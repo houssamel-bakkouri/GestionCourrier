@@ -29,6 +29,7 @@
             {
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Reponses", "Index", "Reponses")</li>
                         <li>@Html.ActionLink("Courriers", "Index", "Courriers")</li>
                         <li>@Html.ActionLink("Dossiers", "Index", "Dossiers")</li>
                         <li>@Html.ActionLink("EmployeBureauOrdres", "Index", "EmployeBureauOrdres")</li>
@@ -40,6 +41,7 @@
             {
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Reponses", "Index", "Reponses")</li>
                         <li>@Html.ActionLink("Courriers", "Index", "Courriers")</li>
                         <li>@Html.ActionLink("Dossiers", "Index", "Dossiers")</li>
                     </ul>
@@ -72,10 +74,11 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Notifications", "Index", "Notifications")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "EmployeBureauOrdres", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li> @Html.Label(User.Identity.Name, new { @class = "navbar-brand" })</li> 
                     </ul>
                 </div>
-                @Html.ActionLink("Logout", "Logout", "EmployeBureauOrdres", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.Label(User.Identity.Name, new { @class = "navbar-brand" })
+               
             }
         </div>
         </div>

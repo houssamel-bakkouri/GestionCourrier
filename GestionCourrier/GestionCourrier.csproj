@@ -139,6 +139,7 @@
     <Compile Include="Controllers\EmployeBureauOrdresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NotificationsController.cs" />
+    <Compile Include="Controllers\ReponsesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="DataLayer\MasterDbContext.cs" />
@@ -2121,6 +2122,10 @@
     <Content Include="Views\Notifications\Delete.cshtml" />
     <Content Include="Views\Notifications\Details.cshtml" />
     <Content Include="Views\Notifications\Index.cshtml" />
+    <Content Include="Views\Reponses\Delete.cshtml" />
+    <Content Include="Views\Reponses\Details.cshtml" />
+    <Content Include="Views\Reponses\Index.cshtml" />
+    <Content Include="Views\Reponses\Courrier.cshtml" />
     <Content Include="Views\Shared\DashBoard.cshtml" />
   </ItemGroup>
   <ItemGroup>

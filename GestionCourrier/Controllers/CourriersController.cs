@@ -105,9 +105,18 @@ namespace GestionCourrier.Controllers
                 AgentService suivi = db.AgentServices.Include("Compte").FirstOrDefault(item => item.Compte.Login == User.Identity.Name);
                 reponse.Suivi = suivi;
                 courrier.Reponse = reponse;
+                foreach (var item in db.EmployeBureaus.Include("Compte.Notifications"))
+                {
+                    Notification notification = new Notification
+                    {
+                        Title = "Un utilisateur a repondu a une courrier",
+                        Message = $"L'utilisateur {suivi.Nom} {suivi.Prenom} a repondu au courrier de ref : {courrier.Id}"
+                    };
+                    item.Compte.Notifications.Add(notification);
+                }
                 db.SaveChanges();
                 Session["ReponseId"] = reponse.Id;
-                return RedirectToAction("Create");
+                return RedirectToAction("ListMessageAgent");
             }
             catch
             {
@@ -179,16 +188,19 @@ namespace GestionCourrier.Controllers
                     Courrier courrier = db.Courriers.Find((int)Session["AddedCourrierId"]);
                     if(courrier != null)
                     {
-                        courrier.FileSource = _path;
+                        //courrier.FileSource = _path;
+                        courrier.FileSource = _FileName;
                         db.SaveChanges();
                         // If this courrier is a reponse to another courrier
-                        if (Session["ReponseId"] != null)
+                        // Feature removed
+                        /*if (Session["ReponseId"] != null)
                         {
-                            Reponse reponse = db.Reponses.Include("courrier").FirstOrDefault(item => item.Id == (int)Session["Reponse"]);
+                            int id = (int)Session["ReponseId"];
+                            Reponse reponse = db.Reponses.Include("courrier").FirstOrDefault(item => item.Id == id);
                             reponse.courrier = courrier;
                             db.SaveChanges();
                             return RedirectToAction("ListMessageAgent");
-                        }
+                        }*/
 
                         // If this courrier is a part of a dossier
                         if (Session["DossierCourrier"] != null)
@@ -306,6 +318,17 @@ namespace GestionCourrier.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public FileResult DownloadFile(int id)
+        {
+            string name = db.Courriers.Find(id).FileSource;
+            string path = Server.MapPath("~/UploadedFiles/") + name;
+
+            byte[] bytes = System.IO.File.ReadAllBytes(path);
+
+            return File(bytes, "application/octet-stream", name);
+
         }
     }
 }
