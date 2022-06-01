@@ -1,0 +1,8 @@
+﻿body {
+    height: 100%;
+    background-image: url(texture.jpg);
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+    padding-top:100px;
+}

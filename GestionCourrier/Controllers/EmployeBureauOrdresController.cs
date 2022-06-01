@@ -47,7 +47,8 @@ namespace GestionCourrier.Controllers
                     return RedirectToAction("Index");
                 }
                 ViewBag.msgError = "Echec de l'authentification";
-                return View();
+                //return View();
+                return RedirectToAction("Index", "Home");
             }
             catch
             {
@@ -61,7 +62,7 @@ namespace GestionCourrier.Controllers
             return View(EmpBOManager.GetEmployes().Include("Compte.Role"));
         }
 
-        [Authorize(Roles = "adminBureauOrdre")]
+        //[Authorize(Roles = "adminBureauOrdre")]
         // GET: EmployeBureauOrdres/Details/5
         public ActionResult Details(int? id)
         {
@@ -102,7 +103,7 @@ namespace GestionCourrier.Controllers
             }
         }
 
-        [Authorize(Roles = "adminBureauOrdre")]
+        //[Authorize(Roles = "adminBureauOrdre")]
         // GET: EmployeBureauOrdres/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -118,7 +119,7 @@ namespace GestionCourrier.Controllers
             return View(employeBureauOrdre);
         }
 
-        [Authorize(Roles = "adminBureauOrdre")]
+        //[Authorize(Roles = "adminBureauOrdre")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Nom,Prenom")] EmployeBureauOrdre employeBureauOrdre)
@@ -133,7 +134,7 @@ namespace GestionCourrier.Controllers
         }
 
         // GET: EmployeBureauOrdres/Delete/5
-        [Authorize(Roles = "adminBureauOrdre")]
+        //[Authorize(Roles = "adminBureauOrdre")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -149,7 +150,7 @@ namespace GestionCourrier.Controllers
         }
 
         // POST: EmployeBureauOrdres/Delete/5
-        [Authorize(Roles = "adminBureauOrdre")]
+        //[Authorize(Roles = "adminBureauOrdre")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

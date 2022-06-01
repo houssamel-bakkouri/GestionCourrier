@@ -1,0 +1,128 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Rubik:wght@500&display=swap');
+
+
+
+.main {
+    display: grid;
+    grid-template-columns : 60% 40%;
+    place-content: start;
+    place-items: center;
+   
+    color: #2b2a2a;
+}
+
+    .main h3 {
+        text-align: left;
+        font-size: 5rem;
+        font-family: 'Oswald';
+        font-weight: 600;
+        max-width: 60%;
+    }
+
+.div1 {
+    
+}
+
+    .div1 p {
+        font-size: 2rem;
+        font-family: 'Rubik';
+        font-weight: 500;
+        margin-top: 1rem;
+    }
+
+    .div1 .button1 {
+        margin-top: 2rem;
+        background-color: #6200ff;
+        border: none;
+        padding: 1rem;
+        color: #fff;
+        font-size: 2rem;
+        font-family: 'Oswald';
+        font-weight: 600;
+        border-radius: 15px;
+        transition: ease-in-out 0.3s;
+        text-align: left;
+    }
+
+        .div1 .button1:hover {
+            opacity: 0.8;
+            transform: scale(1.1);
+        }
+
+.main2 {
+    background-image: url(../Images/athlete.png);
+    background-size: cover;
+    min-height: 680px;
+    color: #fff;
+}
+
+    .main2 h2 {
+        text-align: left;
+        font-size: 4rem;
+        font-family: 'Oswald';
+        font-weight: 600;
+        margin-bottom: 4rem;
+    }
+
+.div2 {
+    
+}
+
+    .div2 p {
+        font-size: 1rem;
+        font-family: 'Rubik';
+        font-weight: 500;
+        max-width: 40rem;
+    }
+
+    .div2 .button2 {
+        margin-top: 2rem;
+        background-color: #343333;
+        border: none;
+        padding: 1rem;
+        color: #fff;
+        font-size: 1.5rem;
+        font-family: 'Oswald';
+        font-weight: 600;
+        border-radius: 15px;
+        transition: ease-in-out 0.3s;
+    }
+
+        .div2 .button2:hover {
+            opacity: 0.8;
+            transform: scale(1.1);
+        }
+
+.main3 {
+}
+
+    .main3 h2 {
+        padding: 50px;
+    }
+
+.grid-div {
+    text-align: center;
+    display: grid;
+    color: #000;
+}
+
+    .grid-div img {
+        margin: 2rem;
+        border-radius: 25px;
+        max-height: 20rem;
+        max-width: 40rem;
+        object-fit: cover;
+    }
+
+.main3 h1 {
+    font-size: 30px;
+    font-family: 'Oswald';
+    font-weight: 600;
+}
+
+.main3 h2 {
+    font-size: 60px;
+    font-family: 'Oswald';
+    font-weight: 600;
+    text-align: left;
+}

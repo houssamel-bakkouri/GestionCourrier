@@ -19,6 +19,7 @@ namespace GestionCourrier.Controllers
         // GET: Courriers
         public ActionResult ListTraiter()
         {
+
             if(User.Identity.Name == "")
             {
                 return View(new List<Courrier>());
@@ -65,7 +66,11 @@ namespace GestionCourrier.Controllers
             return View(Courriers);
         }
 
+        public ActionResult Search()
+        {
 
+            return View(db.Courriers.Include("Reaffectation").ToList());
+        }
 
         public ActionResult Index()
         {

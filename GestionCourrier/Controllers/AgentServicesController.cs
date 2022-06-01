@@ -48,7 +48,8 @@ namespace GestionCourrier.Controllers
                     return RedirectToAction("Index");
                 }
                 ViewBag.msgError = "Echec de l'authentification";
-                return View();
+                //return View();
+                return RedirectToAction("Index", "Home");
             }
             catch
             {
@@ -57,14 +58,14 @@ namespace GestionCourrier.Controllers
         }
 
         // GET: AgentServices
-        [Authorize(Roles = "userService,adminService")]
+        //[Authorize(Roles = "userService,adminService")]
         public ActionResult Index()
         {
             return View(AgentServiceManager.GetAgentServices());
         }
 
         // GET: AgentServices/Details/5
-        [Authorize(Roles = "adminService")]
+        //[Authorize(Roles = "adminService")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -107,7 +108,7 @@ namespace GestionCourrier.Controllers
             }
         }
 
-        [Authorize(Roles = "adminService")]
+        //[Authorize(Roles = "adminService")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -125,7 +126,7 @@ namespace GestionCourrier.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "adminService")]
+        //[Authorize(Roles = "adminService")]
         public ActionResult Edit([Bind(Include = "Id,Nom,Prenom,Service")] AgentService agentService)
         {
             if (ModelState.IsValid)
@@ -138,7 +139,7 @@ namespace GestionCourrier.Controllers
         }
 
         // GET: AgentServices/Delete/5
-        [Authorize(Roles = "adminService")]
+        //[Authorize(Roles = "adminService")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -154,7 +155,7 @@ namespace GestionCourrier.Controllers
         }
 
         // POST: AgentServices/Delete/5
-        [Authorize(Roles = "adminService")]
+        //[Authorize(Roles = "adminService")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

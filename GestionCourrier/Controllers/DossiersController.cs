@@ -30,6 +30,7 @@ namespace GestionCourrier.Controllers
         {
             Dossier dossier = db.Dossiers.Find(id);
             dossier.Sent = true;
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

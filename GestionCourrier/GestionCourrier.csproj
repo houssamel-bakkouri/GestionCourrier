@@ -167,8 +167,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\courrier.jpg" />
+    <Content Include="Content\global.css" />
+    <Content Include="Content\home.css" />
     <Content Include="Content\input.css" />
+    <Content Include="Content\logo.png" />
     <Content Include="Content\slider.css" />
+    <Content Include="Content\texture.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -244,6 +249,7 @@
     <Content Include="Views\Reponses\Details.cshtml" />
     <Content Include="Views\Reponses\Index.cshtml" />
     <Content Include="Views\Reponses\Courrier.cshtml" />
+    <Content Include="Views\Courriers\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

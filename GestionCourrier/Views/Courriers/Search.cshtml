@@ -1,0 +1,99 @@
+﻿@model IEnumerable<GestionCourrier.Models.Courrier>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+<p>
+   
+    <div class="form-group">
+        
+        <div class="col-md-10">
+           <input type="text" placeholder="Search" class="form-control" style="margin-bottom:50px"/>
+        </div>
+    </div>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CoordoneeExpediteur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nature)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCourrier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateArrive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Demande)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Objet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Traiter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileSource)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CoordoneeExpediteur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nature)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCourrier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateArrive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Demande)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Objet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Commentaire)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Traiter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FileSource)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
