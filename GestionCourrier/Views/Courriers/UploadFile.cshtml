@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "UploadFile";
+    Layout = "~/Views/Shared/DashBoard.cshtml";
 }
 <h2>UploadFile</h2>
 @using (Html.BeginForm("UploadFile", "Courriers", FormMethod.Post, new { enctype = "multipart/form-data" }))
